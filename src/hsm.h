@@ -19,6 +19,8 @@
 #include "hsm_config.h"
 #endif // HSM_CONFIG
 
+#include <stdint.h>
+
 /*
  *  --------------------- DEFINITION ---------------------
  */
