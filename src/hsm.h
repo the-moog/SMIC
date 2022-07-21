@@ -69,8 +69,12 @@ typedef void (*state_machine_result_logger)(uint32_t state, state_machine_result
 //! finite state structure
 struct finite_state{
   state_handler Handler;      //!< State handler function
+#ifndef OMIT_ENTRY_HANDLERS
   state_handler Entry;        //!< Entry action for state
+#endif
+#ifndef OMIT_EXIT_HANDLERS
   state_handler Exit;          //!< Exit action for state.
+#endif
 
 #if STATE_MACHINE_LOGGER || USE_STATE_ID
   uint32_t Id;              //!< unique identifier of state within the single state machine
@@ -81,8 +85,11 @@ struct finite_state{
 struct hierarchical_state
 {
   state_handler Handler;      //!< State handler function
+#ifndef OMIT_ENTRY_HANDLERS
   state_handler Entry;        //!< Entry action for state
+#ifndef OMIT_EXIT_HANDLERS
   state_handler Exit;          //!< Exit action for state.
+#endif
 
 #if STATE_MACHINE_LOGGER || USE_STATE_ID
   uint32_t Id;              //!< unique identifier of state within the single state machine

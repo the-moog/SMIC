@@ -24,6 +24,22 @@ To read more about finite state machine and hierarchical state machine please go
 Moroever, there is a an excellent book [Practical UML Statecharts in C/C++, 2nd Ed][1] that explains the UML state machine concept.
 This framework is heavily inspired from this book.
 
+Usage notes
+-----------
+
+The following preprocessor definitions are available
+
+<b>HSM_USE_VARIABLE_LENGTH_ARRAY</b> - See: [Disable Variable length array](#Disable-Variable-length-array)
+
+<b>USE_STATE_ID</b> : Define as 1 if you need to include ```state.Id``` field when STATE_MACHINE_LOGGER = 0<br>
+<i>NOTE: (always included if state logging is enabled)</i>
+
+<b>STATE_MACHINE_LOGGER</b> : Define as 1 to enable state transition logging callback - See: [State machine logging](#State-machine-logging)
+
+<b>OMIT_EXIT_HANDLERS</b> : Define if your code does not need exit handlers
+
+<b>OMIT_ENTRY_HANDLERS</b> : Define if your code does not need entry handlers
+
 State Machine
 -------------
 The State machine is represented by `state_machine_t` data type. It is an abstract structure that can be inherited to create a state machine.

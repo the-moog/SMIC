@@ -147,9 +147,13 @@ extern state_machine_result_t switch_state(state_machine_t* const pState_Machine
   pState_Machine->State = pTarget_State;    // Save the target node
 
   // Call Exit function before leaving the Source state.
+#ifndef OMIT_EXIT_HANDLERS
     EXECUTE_HANDLER(pSource_State->Exit, triggered_to_self, pState_Machine);
+#endif
   // Call entry function before entering the target state.
+#ifndef OMIT_ENTRY_HANDLERS
     EXECUTE_HANDLER(pTarget_State->Entry, triggered_to_self, pState_Machine);
+#endif
 
   if(triggered_to_self == true)
   {
@@ -226,15 +230,21 @@ state_machine_result_t traverse_state(state_machine_t* const pState_Machine,
   }
 
   // Call Exit function before leaving the Source state.
+#ifndef OMIT_EXIT_HANDLERS
     EXECUTE_HANDLER(pSource_State->Exit, triggered_to_self, pState_Machine);
+#endif
   // Call entry function before entering the target state.
+#ifndef OMIT_ENTRY_HANDLERS
     EXECUTE_HANDLER(pTarget_State->Entry, triggered_to_self, pState_Machine);
+#endif
 
     // Now traverse down to the target node & call their entry functions.
     while(index)
     {
       index--;
+      #ifndef OMIT_ENTRY_HANDLERS
       EXECUTE_HANDLER(pTarget_Path[index]->Entry, triggered_to_self, pState_Machine);
+      #endif
     }
 
   if(triggered_to_self == true)
